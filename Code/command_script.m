@@ -1,4 +1,4 @@
-% Main Command Script
+% Main Command Script 2/24/16
 
 % This create a physical layer simulation of nodes communicating with a
 % gateway(s). For now, no Network layer is added
