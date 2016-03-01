@@ -78,8 +78,8 @@ function execute_Callback(hObject, eventdata, handles)
 % hObject    handle to execute (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-    command_fnc(); 
-
+    command_fnc(hObject); 
+    
 
 function nodes_Callback(hObject, eventdata, handles)
 % hObject    handle to nodes (see GCBO)
