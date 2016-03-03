@@ -89,7 +89,7 @@ if ~isempty(err), disp(err), end
 if graphType == 1
    simpleGraph(); %Graph that plots nodes by loc and shows if successfull communication
 elseif graphType == 2
-   pathGraph();  %Graph that shows the flow of data from node to node to gateway
+   pathGraph();  %Graph that shows the flow of data from node to node to 
 else
    disp('ERROR: Graph type unspecified'); 
 end 
