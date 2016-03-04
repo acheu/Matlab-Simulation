@@ -13,6 +13,7 @@ function [n] = node_A (varargin)
             n{itt1}.pow     = 0; %dBm ERP
             n{itt1}.data    = 100*rand(); %Random data from 0 to 100
             n{itt1}.receive = 'NO'; %String if the gateway has received the packet
+            n{itt1}.sensitivity = -50; %dBm
         end 
     end
     if length(varargin) == 2
@@ -21,6 +22,7 @@ function [n] = node_A (varargin)
             n{1}.pow     = 0; %dBm ERP
             n{1}.data    = 100*rand(); %Random data from 0 to 100
             n{1}.receive = 'NO'; %String if the gateway has received the packet
+            n{1}.sensitivity = -50; %dBm
         
     end
 end

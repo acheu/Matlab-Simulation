@@ -11,9 +11,9 @@ function [] = NL_spin()
            
           warn = ['WARNING: ', d.nodes{itt1}.type, ' CANNOT NETWORK']; 
           disp(warn)
-          sens = physicalLayer(itt1,'TX'); %Returns the nodes that can hear a broadcast from this node
-          
-          
+          for itt1 =
+          physicalLayer(itt1
+           
        else
            continue
            
@@ -22,7 +22,8 @@ function [] = NL_spin()
 end
 
 function [] = adv()
-    
+gmi
+
 end
 
 function [] = req()

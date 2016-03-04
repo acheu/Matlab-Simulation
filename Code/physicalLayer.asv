@@ -39,22 +39,20 @@ function[ret] =  physicalLayer(varargin)
         end
         guidata(gcf(),d)
     elseif length(varargin) == 2
-        ret = []; 
         eventN = varargin{1}; %Specific node we are focused on 
         mode = varargin{2}; %Arguments is either TX or RX
         d = guidata(gcf()); 
-        freq = d.freq; 
         
         if strcmp(mode,'TX') %Then there is an event from node 'eventN' ret will be array of nodes that hear 'eventN' 
             for itt2 = 1:d.noNodes
                 if itt2 == eventN
                     continue
                 else
-                    sep = distance(d.nodes{itt2}.loc, d.nodes{eventN}.loc);
-                    pr = d.nodes{eventN}.pow - 10*log10(sep) - 20*log10(4*pi*freq/3e8);
-                    if pr > d.nodes{itt2}.sensitivity
-                        ret = horzcat(ret,itt2);
-                    end
+                    sep = distance(d.nodes{itt2}.loc, d.nodes{
+                    
+                    
+                    
+                    
                 end
             end
             
