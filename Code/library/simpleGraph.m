@@ -2,9 +2,15 @@
 % successfully communicate is displayed with a red circle, nodes that
 % cannot are displayed with a red x. 
 
-function [] = simpleGraph()
-
-    d = guidata(gcf()); 
+function [] = simpleGraph(varargin)
+    
+    if isempty(varargin)
+        h = gcf(); 
+    else
+        h = varargin{1}; 
+        axes(h)
+    end
+    d = guidata(h); 
     
     for itt1 = 1:d.noNodes
         if strcmp(d.nodes{itt1}.receive,'NO')

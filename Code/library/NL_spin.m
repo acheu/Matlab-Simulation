@@ -12,6 +12,8 @@ function [] = NL_spin()
           warn = ['WARNING: ', d.nodes{itt1}.type, ' CANNOT NETWORK']; 
           disp(warn)
           sens = physicalLayer(itt1,'TX'); %Returns the nodes that can hear a broadcast from this node
+%           NEED TO ADD GLOBAL ADDRESSING SYSTEM FOR PACKETS AS WELL
+
           
           
        else
@@ -31,6 +33,10 @@ end
 
 function [] = data()
 
+
+end
+
+function [] = ack()
 
 end
 
