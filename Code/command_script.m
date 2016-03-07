@@ -8,14 +8,18 @@ clear
 presetLoc = 'C:\Users\Owner\Documents\GitHub\Matlab-Simulation\presets\'; %file location of preset node arrangements
 
 %% Parameters
-loadPredetermined     = true; %If True, the parameters below are superceded by a loaded-in file. 
+loadPredetermined     = 1; %If True, the parameters below are superceded by a loaded-in file. 
     presetFile        = '3x3_grid_5.txt'; %File to load in formatted via the README
-noNodes               = 5; %How many nodes do you want
+noNodes               = 60; %How many nodes do you want
 noGate                = 1; %How many are Gateways BTW: ONLY SET AS 1
 size                  = [10,10]; %meters by meters in 2-D Plane
 freq                  = 5.8e9; %Hz, frequency of communication
 height                = 1; %Meters, height off the ground
 algo                  = 'SPIN'; %protocols; SPIN, DDiff 
+
+bufferLimit           = 10; %How many entries into buffer before Node overflows
+pPacket               = .6; %Probatility of missing whole packet
+
 graphType             = 1; %1: Simple, 2: Path graph
 
 fid = figure(1); 
