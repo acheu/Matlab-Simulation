@@ -22,7 +22,7 @@ function varargout = main_window(varargin)
 
 % Edit the above text to modify the response to help main_window
 
-% Last Modified by GUIDE v2.5 20-Feb-2016 15:58:17
+% Last Modified by GUIDE v2.5 07-Mar-2016 10:26:36
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -55,6 +55,10 @@ function main_window_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for main_window
 handles.output = hObject;
 
+handles.presetGroup = [handles.presetLoc, handles.pushLoad];
+
+handles.randGroup = [];
+
 % Update handles structure
 guidata(hObject, handles);
 
@@ -78,8 +82,9 @@ function execute_Callback(hObject, eventdata, handles)
 % hObject    handle to execute (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-    command_fnc(); 
-
+    command_fnc(handles); 
+    
+    
 
 function nodes_Callback(hObject, eventdata, handles)
 % hObject    handle to nodes (see GCBO)
@@ -124,3 +129,64 @@ function gates_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes on button press in pushLoad.
+function pushLoad_Callback(hObject, eventdata, handles)
+% hObject    handle to pushLoad (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+
+function presetLoc_Callback(hObject, eventdata, handles)
+% hObject    handle to presetLoc (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of presetLoc as text
+%        str2double(get(hObject,'String')) returns contents of presetLoc as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function presetLoc_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to presetLoc (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in presetTrue.
+function presetTrue_Callback(hObject, eventdata, handles)
+% hObject    handle to presetTrue (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+    v = get(hObject,'Value');
+   for itt1=1:length(handles.presetGroup)
+       if v
+           set(handles.presetGroup(itt1),'visible','on')
+       else
+           set(handles.presetGroup(itt1),'visible','off')
+       end
+   end
+     
+% Hint: get(hObject,'Value') returns toggle state of presetTrue
+
+
+% --- Executes during object creation, after setting all properties.
+function text1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to text1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+
+% --- Executes during object creation, after setting all properties.
+function text2_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to text2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
