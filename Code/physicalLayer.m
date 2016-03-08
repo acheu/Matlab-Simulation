@@ -34,7 +34,7 @@ function[ret] =  physicalLayer(varargin)
             if pr < d.gates{1}.sensitivity
                 continue;
             else
-                d.nodes{itt1}.receive = 'YES';
+                d.nodes{itt1}.receive = 1;
             end
         end
         guidata(gcf(),d)
@@ -57,10 +57,7 @@ function[ret] =  physicalLayer(varargin)
                     end
                 end
             end
-            
-        elseif strcmp(mode,'RX') %ret will be array of nodes 
-            
-            
+        elseif strcmp(mode,'RX') %ret will be array of nodes  
         end
     else
         disp('ERROR: Incorrect arguments to physicalLayer()'); 

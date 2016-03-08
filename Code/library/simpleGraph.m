@@ -13,7 +13,7 @@ function [] = simpleGraph(varargin)
     d = guidata(h); 
     
     for itt1 = 1:d.noNodes
-        if strcmp(d.nodes{itt1}.receive,'NO')
+        if ~d.nodes{itt1}.receive
             scatter(d.nodes{itt1}.loc(1),d.nodes{itt1}.loc(2),'rx')
         else
             scatter(d.nodes{itt1}.loc(1),d.nodes{itt1}.loc(2),'ro')

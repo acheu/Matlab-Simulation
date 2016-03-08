@@ -6,6 +6,8 @@ close all
 clear
 
 presetLoc = 'C:\Users\Owner\Documents\GitHub\Matlab-Simulation\presets\'; %file location of preset node arrangements
+outputLoc = 'C:\Users\Owner\Documents\GitHub\Matlab-Simulation\output\'; %Where output files go
+outputName = 'defaultOutput.xls'; 
 
 %% Parameters
 loadPredetermined     = 1; %If True, the parameters below are superceded by a loaded-in file. 
@@ -19,7 +21,7 @@ algo                  = 'SPIN'; %protocols; SPIN, DDiff
 
 bufferLimit           = 10; %How many entries into buffer before Node overflows
 pPacket               = .6; %Probatility of missing whole packet
-
+   
 graphType             = 1; %1: Simple, 2: Path graph
 
 fid = figure(1); 
@@ -54,7 +56,7 @@ if loadPredetermined % Load in predetermined
 %                 d.gates{1} = gates; 
                 parseitt = parseitt + 1; 
             elseif parseitt > 0
-                d.nodes(parseitt) = node_A(parseitt,point); 
+                d.nodes(parseitt) = node_A(bufferLimit,parseitt,point); 
 %                 nodes{1}.loc = point; 
 %                 disp('yo')
 %                 d.nodes{parseitt} = nodes; 
@@ -76,7 +78,7 @@ else % Randomize locations based on parameters
     guidata(fid,d); 
     hold on 
 
-    d.nodes = node_A(noNodes); %Generate nodes w/ A properties and locs 
+    d.nodes = node_A(bufferLimit, noNodes); %Generate nodes w/ A properties and locs 
     d.gates = gateway_A(noGate); %Generates gateways with A properties and locs
     d.nodes = randLoc(d.nodes); %randomizes their locations on the plane given by the params
     d.gates = randLoc(d.gates);
@@ -99,3 +101,26 @@ else
 end 
 
 hold off
+
+%% Output to File
+
+d = guidata(fid);
+constName = [outputLoc,outputName]; 
+paramStore = 4; %Need to specify this number of parameters in entry = 
+xlenter = zeros(paramStore,length(d.nodes)); 
+
+xltitle = {'Node #', 'Receive Bool', 'Unique Data', 'Empty Buffer Bool'}; 
+
+for itt1 = 1:length(d.nodes)
+    n = d.nodes{itt1}; 
+    if all(n.buffer == 0), buffT = 1; else buffT = 0; end
+    entry = [itt1, n.receive, n.data, buffT]; 
+    xlenter(1:paramStore,itt1) = entry(:); 
+end
+
+xlenter = xlenter'; %rotating the matrix
+xl = num2cell(xlenter);
+xlenter = vertcat(xltitle,xl); 
+err = xlswrite(constName, xlenter);
+if ischar(err), disp(err), end
+
